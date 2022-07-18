@@ -12,7 +12,7 @@ Using a text editor, fill the file with these contents:
 ```alpine
 <html>
 <head>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
     <h1 x-data="{ message: 'I ❤️ Alpine' }" x-text="message"></h1>
@@ -33,6 +33,7 @@ Now that you're all set up to play around, let's look at three practical example
 <!-- END_VERBATIM -->
 
 <a name="building-a-counter"></a>
+
 ## Building a counter
 
 Let's start with a simple "counter" component to demonstrate the basics of state and event listening in Alpine, two core features.
@@ -61,6 +62,7 @@ Now, you can see with 3 bits of Alpine sprinkled into this HTML, we've created a
 Let's walk through what's happening briefly:
 
 <a name="declaring-data"></a>
+
 ### Declaring data
 
 ```alpine
@@ -76,6 +78,7 @@ Every property inside this object will be made available to other directives ins
 Let's look at `x-on` and see how it can access and modify the `count` property from above:
 
 <a name="listening-for-events"></a>
+
 ### Listening for events
 
 ```alpine
@@ -93,6 +96,7 @@ When a `click` event happens, Alpine will call the associated JavaScript express
 [→ Read more about `x-on`](/directives/on)
 
 <a name="reacting-to-changes"></a>
+
 ### Reacting to changes
 
 ```alpine
@@ -108,6 +112,7 @@ In case it's not clear, `x-text`, like most directives accepts a plain JavaScrip
 [→ Read more about `x-text`](/directives/text)
 
 <a name="building-a-dropdown"></a>
+
 ## Building a dropdown
 
 Now that we've seen some basic functionality, let's keep going and look at an important directive in Alpine: `x-show`, by building a contrived "dropdown" component.
@@ -136,6 +141,7 @@ If you load this component, you should see that the "Contents..." are hidden by 
 The `x-data` and `x-on` directives should be familiar to you from the previous example, so we'll skip those explanations.
 
 <a name="toggling-elements"></a>
+
 ### Toggling elements
 
 ```alpine
@@ -147,6 +153,7 @@ The `x-data` and `x-on` directives should be familiar to you from the previous e
 [→ Read more about `x-show`](/directives/show)
 
 <a name="listening-for-a-click-outside"></a>
+
 ### Listening for a click outside
 
 ```alpine
@@ -162,6 +169,7 @@ This is a convenience helper built into Alpine because this is a common need and
 [→ Read more about `x-on` modifiers](/directives/on#modifiers)
 
 <a name="building-a-search-input"></a>
+
 ## Building a search input
 
 Let's now build a more complex component and introduce a handful of other directives and patterns.
@@ -215,6 +223,7 @@ Insert the following code into the `<body>` tag:
             </template>
         </ul>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
@@ -223,11 +232,13 @@ By default, all of the "items" (foo, bar, and baz) will be shown on the page, bu
 Now there's quite a bit happening here, so let's go through this snippet piece by piece.
 
 <a name="multi-line-formatting"></a>
+
 ### Multi line formatting
 
 The first thing I'd like to point out is that `x-data` now has a lot more going on in it than before. To make it easier to write and read, we've split it up into multiple lines in our HTML. This is completely optional and we'll talk more in a bit about how to avoid this problem altogether, but for now, we'll keep all of this JavaScript directly in the HTML.
 
 <a name="binding-to-inputs"></a>
+
 ### Binding to inputs
 
 ```alpine
@@ -245,6 +256,7 @@ This means that anytime the value of the input changes, the value of "search" wi
 [→ Read more about `x-model`](/directives/model)
 
 <a name="computed-properties-using-getters"></a>
+
 ### Computed properties using getters
 
 The next bit I'd like to draw your attention to is the `items` and `filteredItems` properties from the `x-data` directive.
@@ -275,9 +287,7 @@ It's completely acceptable to forgo the `get` and just make this a method that y
 Now let's look inside the `filteredItems` getter and make sure we understand what's going on there:
 
 ```js
-return this.items.filter(
-    i => i.startsWith(this.search)
-)
+return this.items.filter((i) => i.startsWith(this.search));
 ```
 
 This is all plain JavaScript. We are first getting the array of items (foo, bar, and baz) and filtering them using the provided callback: `i => i.startsWith(this.search)`.
@@ -289,6 +299,7 @@ You may notice that up until now, we haven't had to use `this.` to reference pro
 Because Alpine is a "reactive" framework. Any time the value of `this.search` changes, parts of the template that use `filteredItems` will automatically be updated.
 
 <a name="looping-elements"></a>
+
 ### Looping elements
 
 Now that we understand the data part of our component, let's understand what's happening in the template that allows us to loop through `filteredItems` on the page.
@@ -310,16 +321,17 @@ Now any element inside the `<template>` tag will be repeated for every item insi
 [→ Read more about `x-for`](/directives/for)
 
 <a name="recap"></a>
+
 ## Recap
 
 If you've made it this far, you've been exposed to the following directives in Alpine:
 
-* x-data
-* x-on
-* x-text
-* x-show
-* x-model
-* x-for
+-   x-data
+-   x-on
+-   x-text
+-   x-show
+-   x-model
+-   x-for
 
 That's a great start, however, there are many more directives to sink your teeth into. The best way to absorb Alpine is to read through this documentation. No need to comb over every word, but if you at least glance through every page you will be MUCH more effective when using Alpine.
 

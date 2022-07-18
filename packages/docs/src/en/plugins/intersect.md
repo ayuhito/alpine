@@ -12,6 +12,7 @@ Alpine's Intersect plugin is a convenience wrapper for [Intersection Observer](h
 This is useful for: lazy loading images and other content, triggering animations, infinite scrolling, logging "views" of content, etc.
 
 <a name="installation"></a>
+
 ## Installation
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
@@ -22,10 +23,10 @@ You can include the CDN build of this plugin as a `<script>` tag, just make sure
 
 ```alpine
 <!-- Alpine Plugins -->
-<script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
 
 <!-- Alpine Core -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
 ### Via NPM
@@ -48,6 +49,7 @@ Alpine.plugin(intersect)
 ```
 
 <a name="x-intersect"></a>
+
 ## x-intersect
 
 The primary API for using this plugin is `x-intersect`. You can add `x-intersect` to any element within an Alpine component, and when that component enters the viewport (is scrolled into view), the provided expression will execute.
@@ -76,6 +78,7 @@ For example, in the following snippet, `shown` will remain `false` until the ele
 <!-- END_VERBATIM -->
 
 <a name="x-intersect-enter"></a>
+
 ### x-intersect:enter
 
 The `:enter` suffix is an alias of `x-intersect`, and works the same way:
@@ -87,6 +90,7 @@ The `:enter` suffix is an alias of `x-intersect`, and works the same way:
 You may choose to use this for clarity when also using the `:leave` suffix.
 
 <a name="x-intersect-leave"></a>
+
 ### x-intersect:leave
 
 Appending `:leave` runs your expression when the element leaves the viewport:
@@ -96,9 +100,11 @@ Appending `:leave` runs your expression when the element leaves the viewport:
 ```
 
 <a name="modifiers"></a>
+
 ## Modifiers
 
 <a name="once"></a>
+
 ### .once
 
 Sometimes it's useful to evaluate an expression only the first time an element enters the viewport and not subsequent times. For example when triggering "enter" animations. In these cases, you can add the `.once` modifier to `x-intersect` to achieve this.
@@ -108,6 +114,7 @@ Sometimes it's useful to evaluate an expression only the first time an element e
 ```
 
 <a name="half"></a>
+
 ### .half
 
 Evaluates the expression once the intersection threshold exceeds `0.5`.
@@ -119,6 +126,7 @@ Useful for elements where it's important to show at least part of the element.
 ```
 
 <a name="full"></a>
+
 ### .full
 
 Evaluates the expression once the intersection threshold exceeds `0.99`.
@@ -130,6 +138,7 @@ Useful for elements where it's important to show the whole element.
 ```
 
 <a name="threshold"></a>
+
 ### .threshold
 
 Allows you to control the `threshold` property of the underlying `IntersectionObserver`:
@@ -147,6 +156,7 @@ For example if you want to trigger an intersection after half of the element has
 If you wanted to trigger only when 5% of the element has entered the viewport, you could use: `.threshold.05`, and so on and so forth.
 
 <a name="margin"></a>
+
 ### .margin
 
 Allows you to control the `rootMargin` property of the underlying `IntersectionObserver`.

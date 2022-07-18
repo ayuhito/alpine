@@ -27,10 +27,12 @@ The best way to understand its purpose is with the following interactive visuali
             <button @click="slide = (slide % 13) + 1" class="w-full bg-cyan-400 rounded-full text-center py-3 font-bold text-white">Next</button>
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
 <a name="installation"></a>
+
 ## Installation
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
@@ -41,10 +43,10 @@ You can include the CDN build of this plugin as a `<script>` tag, just make sure
 
 ```alpine
 <!-- Alpine Plugins -->
-<script defer src="https://unpkg.com/@alpinejs/morph@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/morph@3.x.x/dist/cdn.min.js"></script>
 
 <!-- Alpine Core -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
 ### Via NPM
@@ -68,14 +70,15 @@ Alpine.plugin(morph)
 ```
 
 <a name="alpine-morph"></a>
+
 ## Alpine.morph()
 
 The `Alpine.morph(el, newHtml)` allows you to imperatively morph a dom node based on passed in HTML. It accepts the following parameters:
 
-| Parameter | Description |
-| ---       | --- |
-| `el`      | A DOM element on the page. |
-| `newHtml` | A string of HTML to use as the template to morph the dom element into. |
+| Parameter            | Description                                                                      |
+| -------------------- | -------------------------------------------------------------------------------- |
+| `el`                 | A DOM element on the page.                                                       |
+| `newHtml`            | A string of HTML to use as the template to morph the dom element into.           |
 | `options` (optional) | An options object used mainly for [injecting lifecycle hooks](#lifecycle-hooks). |
 
 Here's an example of using `Alpine.morph()` to update an Alpine component with new HTML: (In real apps, this new HTML would likely be coming from the server)
@@ -114,6 +117,7 @@ Here's an example of using `Alpine.morph()` to update an Alpine component with n
     </div>
 
     <button id="morph-button-1" class="mt-4">Run Morph</button>
+
 </div>
 
 <script>
@@ -133,6 +137,7 @@ Here's an example of using `Alpine.morph()` to update an Alpine component with n
 <!-- END_VERBATIM -->
 
 <a name="lifecycle-hooks"></a>
+
 ### Lifecycle Hooks
 
 The "Morph" plugin works by comparing two DOM trees, the live element, and the passed in HTML.
@@ -143,25 +148,25 @@ While the default algorithm is very capable, there are cases where you may want 
 
 Before we jump into the available Lifecycle hooks themselves, let's first list out all the potential parameters they receive and explain what each one is:
 
-| Parameter | Description |
-| ---       | --- |
-| `el` | This is always the actual, current, DOM element on the page that will be "patched" (changed by Morph). |
-| `toEl` | This is a "template element". It's a temporary element representing what the live `el` will be patched to. It will never actually live on the page and should only be used for reference purposes. |
-| `childrenOnly()` | This is a function that can be called inside the hook to tell Morph to skip the current element and only "patch" its children. |
-| `skip()` | A function that when called within the hook will "skip" comparing/patching itself and the children of the current element. |
+| Parameter        | Description                                                                                                                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `el`             | This is always the actual, current, DOM element on the page that will be "patched" (changed by Morph).                                                                                             |
+| `toEl`           | This is a "template element". It's a temporary element representing what the live `el` will be patched to. It will never actually live on the page and should only be used for reference purposes. |
+| `childrenOnly()` | This is a function that can be called inside the hook to tell Morph to skip the current element and only "patch" its children.                                                                     |
+| `skip()`         | A function that when called within the hook will "skip" comparing/patching itself and the children of the current element.                                                                         |
 
 Here are the available lifecycle hooks (passed in as the third parameter to `Alpine.morph(..., options)`):
 
-| Option | Description |
-| ---       | --- |
-| `updating(el, toEl, childrenOnly, skip)` | Called before patching the `el` with the comparison `toEl`.  |
-| `updated(el, toEl)` | Called after Morph has patched `el`. |
-| `removing(el, skip)` | Called before Morph removes an element from the live DOM. |
-| `removed(el)` | Called after Morph has removed an element from the live DOM. |
-| `adding(el, skip)` | Called before adding a new element. |
-| `added(el)` | Called after adding a new element to the live DOM tree. |
-| `key(el)` | A re-usable function to determine how Morph "keys" elements in the tree before comparing/patching. [More on that here](#keys) |
-| `lookahead` | A boolean value telling Morph to enable an extra feature in its algorithm that "looks ahead" to make sure a DOM element that's about to be removed should instead just be "moved" to a later sibling. |
+| Option                                   | Description                                                                                                                                                                                           |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `updating(el, toEl, childrenOnly, skip)` | Called before patching the `el` with the comparison `toEl`.                                                                                                                                           |
+| `updated(el, toEl)`                      | Called after Morph has patched `el`.                                                                                                                                                                  |
+| `removing(el, skip)`                     | Called before Morph removes an element from the live DOM.                                                                                                                                             |
+| `removed(el)`                            | Called after Morph has removed an element from the live DOM.                                                                                                                                          |
+| `adding(el, skip)`                       | Called before adding a new element.                                                                                                                                                                   |
+| `added(el)`                              | Called after adding a new element to the live DOM tree.                                                                                                                                               |
+| `key(el)`                                | A re-usable function to determine how Morph "keys" elements in the tree before comparing/patching. [More on that here](#keys)                                                                         |
+| `lookahead`                              | A boolean value telling Morph to enable an extra feature in its algorithm that "looks ahead" to make sure a DOM element that's about to be removed should instead just be "moved" to a later sibling. |
 
 Here is code of all these lifecycle hooks for a more concrete reference:
 
@@ -193,14 +198,15 @@ Alpine.morph(el, newHtml, {
 
     key(el) {
         // By default Alpine uses the `key=""` HTML attribute.
-        return el.id
+        return el.id;
     },
 
     lookahead: true, // Default: false
-})
+});
 ```
 
 <a name="keys"></a>
+
 ### Keys
 
 Dom-diffing utilities like Morph try their best to accurately "morph" the original DOM into the new HTML. However, there are cases where it's impossible to determine if an element should be just changed, or replaced completely.

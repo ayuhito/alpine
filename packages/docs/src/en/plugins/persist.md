@@ -12,6 +12,7 @@ Alpine's Persist plugin allows you to persist Alpine state across page loads.
 This is useful for persisting search filters, active tabs, and other features where users will be frustrated if their configuration is reset after refreshing or leaving and revisiting a page.
 
 <a name="installation"></a>
+
 ## Installation
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
@@ -22,10 +23,10 @@ You can include the CDN build of this plugin as a `<script>` tag, just make sure
 
 ```alpine
 <!-- Alpine Plugins -->
-<script defer src="https://unpkg.com/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
 
 <!-- Alpine Core -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
 ### Via NPM
@@ -48,6 +49,7 @@ Alpine.plugin(persist)
 ```
 
 <a name="magic-persist"></a>
+
 ## $persist
 
 The primary API for using this plugin is the magic `$persist` method.
@@ -76,6 +78,7 @@ In the above example, because we wrapped `0` in `$persist()`, Alpine will now in
 You can try this for yourself by incrementing the "count" in the above example, then refreshing this page and observing that the "count" maintains its state and isn't reset to "0".
 
 <a name="how-it-works"></a>
+
 ## How does it work?
 
 If a value is wrapped in `$persist`, on initialization Alpine will register its own watcher for that value. Now everytime that value changes for any reason, Alpine will store the new value in [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
@@ -108,10 +111,11 @@ Now change the "count" in the following example and observe the changes made by 
 <!-- END_VERBATIM -->
 
 > `$persist` works with primitive values as well as with arrays and objects.
-However, it is worth noting that localStorage must be cleared when the type of the variable changes.<br>
+> However, it is worth noting that localStorage must be cleared when the type of the variable changes.<br>
 > Given the previous example, if we change count to a value of `$persist({ value: 0 })`, then localStorage must be cleared or the variable 'count' renamed.
 
 <a name="custom-key"></a>
+
 ## Setting a custom key
 
 By default, Alpine uses the property key that `$persist(...)` is being assigned to ("count" in the above examples).
@@ -121,7 +125,6 @@ Consider the scenario where you have multiple Alpine components across pages or 
 Alpine will have no way of differentiating between these components.
 
 In these cases, you can set your own custom key for any persisted value using the `.as` modifier like so:
-
 
 ```alpine
 <div x-data="{ count: $persist(0).as('other-count') }">
@@ -138,12 +141,12 @@ Here's a view of Chrome Devtools to see for yourself:
 <img src="/img/persist_custom_key_devtools.png" alt="Chrome devtools showing the localStorage view with count set to 0">
 
 <a name="custom-storage"></a>
+
 ## Using a custom storage
 
 By default, data is saved to localStorage, it does not have an expiration time and it's kept even when the page is closed.
 
 Consider the scenario where you want to clear the data once the user close the tab. In this case you can persist data to sessionStorage using the `.using` modifier like so:
-
 
 ```alpine
 <div x-data="{ count: $persist(0).using(sessionStorage) }">
@@ -154,7 +157,6 @@ Consider the scenario where you want to clear the data once the user close the t
 ```
 
 You can also define your custom storage object exposing a getItem function and a setItem function. For example, you can decide to use a session cookie as storage doing so:
-
 
 ```alpine
 <script>
@@ -183,25 +185,27 @@ You can also define your custom storage object exposing a getItem function and a
 ```
 
 <a name="using-persist-with-alpine-data"></a>
+
 ## Using $persist with Alpine.data
 
 If you want to use `$persist` with `Alpine.data`, you need to use a standard function instead of an arrow function so Alpine can bind a custom `this` context when it initially evaluates the component scope.
 
 ```js
-Alpine.data('dropdown', function () {
+Alpine.data("dropdown", function () {
     return {
-        open: this.$persist(false)
-    }
-})
+        open: this.$persist(false),
+    };
+});
 ```
 
 <a name="using-alpine-persist-global"></a>
+
 ## Using the Alpine.$persist global
 
 `Alpine.$persist` is exposed globally so it can be used outside of `x-data` contexts. This is useful to persist data from other sources such as `Alpine.store`.
 
 ```js
-Alpine.store('darkMode', {
-    on: Alpine.$persist(true).as('darkMode_on')
+Alpine.store("darkMode", {
+    on: Alpine.$persist(true).as("darkMode_on"),
 });
 ```

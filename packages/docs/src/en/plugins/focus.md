@@ -14,6 +14,7 @@ Alpine's Focus plugin allows you to manage focus on a page.
 > This plugin internally makes heavy use of the open source tool: [Tabbable](https://github.com/focus-trap/tabbable). Big thanks to that team for providing a much needed solution to this problem.
 
 <a name="installation"></a>
+
 ## Installation
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
@@ -24,10 +25,10 @@ You can include the CDN build of this plugin as a `<script>` tag, just make sure
 
 ```alpine
 <!-- Alpine Plugins -->
-<script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
 
 <!-- Alpine Core -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
 ### Via NPM
@@ -50,6 +51,7 @@ Alpine.plugin(focus)
 ```
 
 <a name="x-trap"></a>
+
 ## x-trap
 
 Focus offers a dedicated API for trapping focus within an element: the `x-trap` directive.
@@ -97,10 +99,12 @@ For example:
             <button @click="open = false">Close Dialog</button>
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
 <a name="nesting"></a>
+
 ### Nesting dialogs
 
 Sometimes you may want to nest one dialog inside another. `x-trap` makes this trivial and handles it automatically.
@@ -178,13 +182,16 @@ Here is nesting in action:
             <button @click="open = false">Close Dialog</button>
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
 <a name="modifiers"></a>
+
 ### Modifiers
 
 <a name="inert"></a>
+
 #### .inert
 
 When building things like dialogs/modals, it's recommended to hide all the other elements on the page from screen readers when trapping focus.
@@ -216,6 +223,7 @@ By adding `.inert` to `x-trap`, when focus is trapped, all other elements on the
 ```
 
 <a name="noscroll"></a>
+
 #### .noscroll
 
 When building dialogs/modals with Alpine, it's recommended that you disable scrolling for the surrounding content when the dialog is open.
@@ -251,10 +259,12 @@ For example:
             <button class="mt-4" @click="open = false">Close Dialog</button>
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
 <a name="noreturn"></a>
+
 #### .noreturn
 
 Sometimes you may not want focus to be returned to where it was previously. Consider a dropdown that's triggered upon focusing an input, returning focus to the input on close will just trigger the dropdown to open again.
@@ -298,32 +308,34 @@ For example:
             <button class="mt-4" @click="open = false">Close Dialog</button>
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
 <a name="focus-magic"></a>
+
 ## $focus
 
 This plugin offers many smaller utilities for managing focus within a page. These utilities are exposed via the `$focus` magic.
 
-| Property | Description |
-| ---       | --- |
-| `focus(el)`   | Focus the passed element (handling annoyances internally: using nextTick, etc.) |
-| `focusable(el)`   | Detect weather or not an element is focusable |
-| `focusables()`   | Get all "focusable" elements within the current element |
-| `focused()`   | Get the currently focused element on the page |
-| `lastFocused()`   | Get the last focused element on the page |
-| `within(el)`   | Specify an element to scope the `$focus` magic to (the current element by default) |
-| `first()`   | Focus the first focusable element |
-| `last()`   | Focus the last focusable element |
-| `next()`   | Focus the next focusable element |
-| `previous()`   | Focus the previous focusable element |
-| `noscroll()`   | Prevent scrolling to the element about to be focused |
-| `wrap()`   | When retrieving "next" or "previous" use "wrap around" (ex. returning the first element if getting the "next" element of the last element) |
-| `getFirst()`   | Retrieve the first focusable element |
-| `getLast()`   | Retrieve the last focusable element |
-| `getNext()`   | Retrieve the next focusable element |
-| `getPrevious()`   | Retrieve the previous focusable element |
+| Property        | Description                                                                                                                                |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| `focus(el)`     | Focus the passed element (handling annoyances internally: using nextTick, etc.)                                                            |
+| `focusable(el)` | Detect weather or not an element is focusable                                                                                              |
+| `focusables()`  | Get all "focusable" elements within the current element                                                                                    |
+| `focused()`     | Get the currently focused element on the page                                                                                              |
+| `lastFocused()` | Get the last focused element on the page                                                                                                   |
+| `within(el)`    | Specify an element to scope the `$focus` magic to (the current element by default)                                                         |
+| `first()`       | Focus the first focusable element                                                                                                          |
+| `last()`        | Focus the last focusable element                                                                                                           |
+| `next()`        | Focus the next focusable element                                                                                                           |
+| `previous()`    | Focus the previous focusable element                                                                                                       |
+| `noscroll()`    | Prevent scrolling to the element about to be focused                                                                                       |
+| `wrap()`        | When retrieving "next" or "previous" use "wrap around" (ex. returning the first element if getting the "next" element of the last element) |
+| `getFirst()`    | Retrieve the first focusable element                                                                                                       |
+| `getLast()`     | Retrieve the last focusable element                                                                                                        |
+| `getNext()`     | Retrieve the next focusable element                                                                                                        |
+| `getPrevious()` | Retrieve the previous focusable element                                                                                                    |
 
 Let's walk through a few examples of these utilities in use. The example below allows the user to control focus within the group of buttons using the arrow keys. You can test this by clicking on a button, then using the arrow keys to move focus around:
 

@@ -12,6 +12,7 @@ Alpine's Collapse plugin allows you to expand and collapse elements using smooth
 Because this behavior and implementation differs from Alpine's standard transition system, this functionality was made into a dedicated plugin.
 
 <a name="installation"></a>
+
 ## Installation
 
 You can use this plugin by either including it from a `<script>` tag or installing it via NPM:
@@ -22,10 +23,10 @@ You can include the CDN build of this plugin as a `<script>` tag, just make sure
 
 ```alpine
 <!-- Alpine Plugins -->
-<script defer src="https://unpkg.com/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
 
 <!-- Alpine Core -->
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
 
 ### Via NPM
@@ -48,6 +49,7 @@ Alpine.plugin(collapse)
 ```
 
 <a name="x-collapse"></a>
+
 ## x-collapse
 
 The primary API for using this plugin is the `x-collapse` directive.
@@ -75,13 +77,16 @@ For example:
             Reprehenderit eu excepteur ullamco esse cillum reprehenderit exercitation labore non. Dolore dolore ea dolore veniam sint in sint ex Lorem ipsum. Sint laborum deserunt deserunt amet voluptate cillum deserunt. Amet nisi pariatur sit ut id. Ipsum est minim est commodo id dolor sint id quis sint Lorem.
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
 <a name="modifiers"></a>
+
 ## Modifiers
 
 <a name="dot-duration"></a>
+
 ### .duration
 
 You can customize the duration of the collapse/expand transition by appending the `.duration` modifier like so:
@@ -105,10 +110,12 @@ You can customize the duration of the collapse/expand transition by appending th
             Reprehenderit eu excepteur ullamco esse cillum reprehenderit exercitation labore non. Dolore dolore ea dolore veniam sint in sint ex Lorem ipsum. Sint laborum deserunt deserunt amet voluptate cillum deserunt. Amet nisi pariatur sit ut id. Ipsum est minim est commodo id dolor sint id quis sint Lorem.
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
 
 <a name="dot-min"></a>
+
 ### .min
 
 By default, `x-collapse`'s "collapsed" state sets the height of the element to `0px` and also sets `display: none;`.
@@ -134,5 +141,6 @@ Sometimes, it's helpful to "cut-off" an element rather than fully hide it. By us
             Reprehenderit eu excepteur ullamco esse cillum reprehenderit exercitation labore non. Dolore dolore ea dolore veniam sint in sint ex Lorem ipsum. Sint laborum deserunt deserunt amet voluptate cillum deserunt. Amet nisi pariatur sit ut id. Ipsum est minim est commodo id dolor sint id quis sint Lorem.
         </div>
     </div>
+
 </div>
 <!-- END_VERBATIM -->
